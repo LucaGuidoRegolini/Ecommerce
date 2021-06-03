@@ -1,8 +1,8 @@
-const Squelize = require("sequelize");
-const config = require("../config/database");
+const knex = require("knex");
+const config = require("../../knexfile");
 
-const env = config.development;
+const env = config.docker;
 
-const connection = new Squelize(config);
+const connection = knex(env);
 
 module.exports = connection;

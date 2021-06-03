@@ -1,11 +1,11 @@
 const { Router } = require("express");
+const ProductController = require("./controller/ProductController");
+const TagController = require("./controller/TagController");
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.json({
-    status: "sucess",
-  });
-});
+router.post("/products", ProductController.create);
+
+router.post("/tags", TagController.create);
 
 module.exports = router;

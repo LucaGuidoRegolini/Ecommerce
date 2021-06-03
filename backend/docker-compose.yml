@@ -10,15 +10,11 @@ services:
       - .:/usr/app
 
   db:
-    container_name: "postgres"
-    image: postgres:9.6
-    volumes:
-      - "/var/lib/postgresql/data"
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     ports:
-      - 5432:5432
+      - 3306:3306
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: sqlnode
-      TZ: "GMT"
-      PGTZ: "GMT"
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sqlnode
