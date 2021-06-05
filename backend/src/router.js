@@ -5,6 +5,7 @@ const multerConfig = require("./config/multer");
 const ProductController = require("./controller/ProductController");
 const TagController = require("./controller/TagController");
 const ProductTagController = require("./controller/ProductTagController");
+const PostControle = require("./controller/PostController");
 
 const router = Router();
 
@@ -19,9 +20,14 @@ router.delete("/products-tags", ProductTagController.delete);
 
 router.post("/tags", TagController.create);
 
-router.post("/post", multer(multerConfig).single("file"), (req, res) => {
-  console.log(req.file);
-  return res.json({ hello: "Rocket" });
-});
+router.get("/posts/:id", PostControle.index);
+router.get("/post/:id", PostControle.select);
+router.post(
+  "/post/:id",
+  multer(multerConfig).single("file"),
+  PostControle.create
+);
+router.delete("/post/:id", PostControle.delete);
+router.delete("/posts/:id", PostControle.deleteAll);
 
 module.exports = router;
