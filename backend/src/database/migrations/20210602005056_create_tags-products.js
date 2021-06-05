@@ -1,18 +1,24 @@
-exports.up = function (knex) {
-  return knex.schema.createTable("productstags", function (table) {
+exports.up = (knex) => {
+  return knex.schema.createTable("productstags", (table) => {
     table
       .integer("product_id")
-      .references("products.product_id")
+      .unsigned()
+      .references("product_id")
+      .inTable("products")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
     table
-      .integer("tagt_id")
-      .references("tags.tagt_id")
+      .integer("tag_id")
+      .unsigned()
+      .references("tag_id")
+      .inTable("tags")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
+
+    table.primary(["product_id", "tag_id"]);
   });
 };
 
-exports.down = function (knex) {
+exports.down = (knex) => {
   return knex.schema.dropTable("productstags");
 };
