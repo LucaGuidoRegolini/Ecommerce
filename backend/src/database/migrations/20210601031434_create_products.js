@@ -6,7 +6,9 @@ exports.up = (knex) => {
     table.float("product_price").unsigned();
     table.text("product_about");
     table.timestamp("created_at").default(knex.fn.now());
-    table.timestamp("updated_at").default(knex.fn.now());
+    table
+      .timestamp("updated_at")
+      .defaultTo(knex.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
   });
 };
 

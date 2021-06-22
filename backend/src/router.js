@@ -12,6 +12,8 @@ const router = Router();
 router.get("/products/", ProductController.index);
 router.get("/products/:id", ProductController.select);
 router.post("/products", ProductController.create);
+router.put("/products/:id", ProductController.update);
+router.delete("/products/:id", ProductController.delete);
 
 router.get("/products-tags/:id", ProductTagController.count);
 router.get("/products-tags", ProductTagController.index);
@@ -19,6 +21,7 @@ router.post("/products-tags", ProductTagController.create);
 router.delete("/products-tags", ProductTagController.delete);
 
 router.post("/tags", TagController.create);
+router.delete("/tags/:id", TagController.delete);
 
 router.get("/posts/:id", PostControle.index);
 router.get("/post/:id", PostControle.select);
